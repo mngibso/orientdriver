@@ -12,7 +12,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0.3.1');
-  api.addFiles('wuxianliang:meteorient.js', 'server');
+  api.addFiles('wuxianliang:orientdriver.js', 'server');
   api.use(['underscore', 'http'], 'server');
   api.use('meteorhacks:npm@1.2.2');
 });

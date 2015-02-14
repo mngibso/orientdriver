@@ -1,6 +1,6 @@
 Package.describe({
   name: 'wuxianliang:orientdriver',
-  version: '0.0.1',
+  version: '0.0.3',
   // Brief, one-line summary of the package.
   summary: 'Meteor.js oriento wrapper to be used with meteor applications (a.k.a. orientdb Connector)',
   // URL to the Git repository containing the source code for this package.

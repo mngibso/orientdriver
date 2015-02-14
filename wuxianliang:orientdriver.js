@@ -24,41 +24,41 @@ this.OrientDB = (function() {
    */
   function OrientDB(url) {
 
-    var _this = this;
+    //var _this = this;
 
-    this.message = ' connection to OrientDB, please check your settings and what OrientDB is running. Note: URL to OrientDB database is better to set via environment variable ORIENTDB_URL or GRAPHENEDB_URL';
-    this.warning = 'OrientDB is not ready, check your settings and DB availability';
-    this.ready = false;
-    this.url = (url != null) ? url : process.env['ORIENTDB_URL'] || process.env['GRAPHENEDB_URL'] || 'http://localhost:2480';
+    //this.message = ' connection to OrientDB, please check your settings and what OrientDB is running. Note: URL to OrientDB database is better to set via environment variable ORIENTDB_URL or GRAPHENEDB_URL';
+    //this.warning = 'OrientDB is not ready, check your settings and DB availability';
+    //this.ready = false;
+    //this.url = (url != null) ? url : process.env['ORIENTDB_URL'] || process.env['GRAPHENEDB_URL'] || 'http://localhost:2480';
 
     /*
      * Check connection to Neo4j
      * If something is wrong - throw message
      */
-    try {
-      var httpRes = HTTP.call('GET', this.url);
-      if(httpRes.statusCode === 200){
-        this.ready = true;
-        console.log('Meteor is successfully connected to OrientDB on ' + this.url);
-      }else{
-        console.log('Bad' + this.message, httpRes.toString());
-      }
-    } catch (e) {
-      console.log('No' + this.message, e.toString());
-    }
+    //try {
+    //  var httpRes = HTTP.call('GET', this.url);
+    //  if(httpRes.statusCode === 200){
+    //    this.ready = true;
+    //    console.log('Meteor is successfully connected to OrientDB on ' + this.url);
+    //  }else{
+    //    console.log('Bad' + this.message, httpRes.toString());
+    //  }
+    //} catch (e) {
+    //  console.log('No' + this.message, e.toString());
+    //}
 
     this.Oriento = Meteor.npmRequire('oriento');
-    _orient = this.Oriento;
+    orient = this.Oriento;
 
 
-    var GraphDatabase = _orient({
-      host: 'localhost',
-      port: 2480,
+    var server = _orient({
+      host: '0.0.0.0',
+      port: 2424,
       username: 'root',
       password: '235711'
     });
-
-    GraphDatabase.callbacks = [];
+    var GraphDatabase = server.use 'GratefulDeadConcerts'
+    //GraphDatabase.callbacks = [];
 
     /*
      *
@@ -72,6 +72,7 @@ this.OrientDB = (function() {
      *              Add functionality of callbacks which runs on every query execution
      *
      */
+    /*
     GraphDatabase.query = function(query, opts, callback){
       if(_this.ready){
         return _orient({host: 'localhost', port: 2480, username: 'root', password: '235711'}).query(query, opts, function(err, results){
@@ -89,7 +90,7 @@ this.OrientDB = (function() {
         console.log('GraphDatabase.query', _this.warning);
       }
     };
-
+   */
     /*
      *
      * @function
@@ -101,14 +102,14 @@ this.OrientDB = (function() {
      * @description Add callback function
      *
      */
-    GraphDatabase.listen = function(callback){
+    /*  GraphDatabase.listen = function(callback){
       if(_this.ready){
         GraphDatabase.callbacks.push(callback);
       }else{
         console.log('GraphDatabase.listen', _this.warning);
       }
     };
-
+   */
     return GraphDatabase;
   }
 
